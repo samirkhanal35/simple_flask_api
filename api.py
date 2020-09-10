@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
-data =''
+
 @app.route("/name", methods=["POST"])
 def setName():
     if request.method=='POST':
@@ -12,9 +12,11 @@ def setName():
 
 @app.route("/message", methods=["GET"])
 def message():
-    posted_data = request.get_json()
-    name = posted_data['name']
-    return jsonify(" Hope you are having a good time " +  data + "!!!")
+    posted_data = request.args['name']
+    # print(posted_data)
+    # data = posted_data['name']
+    return jsonify(" Hope you are having a good time " +  posted_data + "!!!")
+    # return jsonify(" Hope you are having a good time !!")
 
 #  main thread of execution to start the server
 if __name__=='__main__':
